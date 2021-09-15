@@ -61,6 +61,7 @@ func getPayload(command string, args []string) string {
 	return payload
 }
 
+// Encodes payload into a base32 string
 func encode(payload string) string {
 	bytes := []byte(payload)
 	encoded := base32.StdEncoding.EncodeToString(bytes)
@@ -68,6 +69,7 @@ func encode(payload string) string {
 	return encoded
 }
 
+// Decodes payload from a base32 encoded string
 func decode(encoded string) string {
 	decoded, err := base32.StdEncoding.DecodeString(encoded)
 	if err != nil {
