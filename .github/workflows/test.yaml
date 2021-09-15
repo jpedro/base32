@@ -34,6 +34,7 @@ jobs:
         HEX=$(openssl rand -hex 20)
         ENC="$(echo $HEX | go run main.go encode)"
         DEC="$(echo $ENC | go run main.go decode)"
+        echo "Payload : $HEX"
         echo "Encoded : $ENC"
         echo "Decoded : $DEC"
         echo "Chained : $(echo $HEX | go run main.go -e | go run main.go -d)"
