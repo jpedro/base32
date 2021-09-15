@@ -1,5 +1,5 @@
 # Base32
-[![Github Status](https://github.com/jpedro/base32/workflows/tests/badge.svg)](https://github.com/jpedro/base32/actions)
+[![Github Status](https://github.com/jpedro/base32/workflows/test/badge.svg)](https://github.com/jpedro/base32/actions)
 [![GoDoc](https://godoc.org/github.com/jpedro/base32?status.svg)](https://godoc.org/github.com/jpedro/base32)
 
 The universal base32 cli for MacOS and others.
