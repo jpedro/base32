@@ -35,7 +35,7 @@ jobs:
         DEC="$(echo $ENC | go run main.go decode)"
         echo "Encoded : $ENC"
         echo "Decoded : $DEC"
-        echo "Chained : $(echo test | go run main.go -e | go run main.go -d)"
+        echo "Chained : $(openssl rand -hex 20 | go run main.go -e | go run main.go -d)"
         echo "Version : $(go run main.go version)"
 
     - name: Send slack notification
