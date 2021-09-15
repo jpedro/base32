@@ -1,4 +1,4 @@
-name: this-is-a-different-name
+name: test
 
 on:
 - push
