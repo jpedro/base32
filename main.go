@@ -7,6 +7,19 @@ import (
 	"os"
 )
 
+var (
+	VERSION = "v0.1.0"
+	USAGE   = `SYNOPSIS
+    Base32 encodes and decodes payloads
+
+USAGE
+    base32 encode [PAYLOAD]     # Encodes PAYLOAD or what's in the STDIN
+    base32 decode [PAYLOAD]     # Decodes PAYLOAD or what's in the STDIN
+    base32 help                 # Shows this help
+    base32 version              # Shows the current version
+`
+)
+
 func main() {
 	command := "help"
 	if len(os.Args) > 1 {
@@ -15,11 +28,11 @@ func main() {
 
 	switch command {
 	case "help", "--help":
-		fmt.Printf("USAGE %s\n", "base32")
+		fmt.Print(USAGE)
 		return
 
 	case "version", "--version":
-		fmt.Printf("v%s\n", "0.1.0")
+		fmt.Println(VERSION)
 		return
 
 	case "encode", "enc", "e", "--encode", "-e":
@@ -31,6 +44,11 @@ func main() {
 		payload := getPayload(command, os.Args)
 		decoded := decode(payload)
 		fmt.Println(decoded)
+
+	default:
+		fmt.Fprintf(os.Stderr, "Error: Command '%s' not found.\n", command)
+		fmt.Fprintf(os.Stderr, "Run 'base32 help' to check available commands.\n")
+		os.Exit(1)
 	}
 }
 
