@@ -33,7 +33,7 @@ jobs:
       run: |
         HEX=$(openssl rand -hex 20)
         ENC="$(echo $HEX | go run main.go)"
-        DEC="$(echo $ENC | go run main.go dec)"
+        DEC="$(echo $ENC | go run main.go --decode)"
         echo "Payload : $HEX"
         echo "Encoded : $ENC"
         echo "Decoded : $DEC"
