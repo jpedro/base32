@@ -31,9 +31,11 @@ $ echo test | base32 | base32 -d
 ```
 
 
-### Reload after a deploy
+### Refresh pkg.go.dev
 
 Check that https://proxy.golang.org/github.com/jpedro/base32/@v/list includes
 the latest version or tag.
 
 Use https://proxy.golang.org/github.com/jpedro/base32/@v/v0.1.1.mod to update.
+
+Check https://pkg.go.dev/github.com/jpedro/base32 for the latest.
