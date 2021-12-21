@@ -17,7 +17,7 @@ go install github.com/jpedro/base32
 ```bash
 # Encode
 # You can also use 'enc', '-e', '--encode'
-$ base32 encode test
+$ base32 test
 ORSXG5A=
 
 # Decode
@@ -26,4 +26,4 @@ $ base32 decode ORSXG5A=
 test
 
 # Chain commands
-$ echo test | base32 --encode | base32 -d
+$ echo test | base32 | base32 -d

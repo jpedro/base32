@@ -32,12 +32,12 @@ jobs:
     - name: Run cli
       run: |
         HEX=$(openssl rand -hex 20)
-        ENC="$(echo $HEX | go run main.go encode)"
+        ENC="$(echo $HEX | go run main.go)"
         DEC="$(echo $ENC | go run main.go dec)"
         echo "Payload : $HEX"
         echo "Encoded : $ENC"
         echo "Decoded : $DEC"
-        echo "Chained : $(echo $HEX | go run main.go e | go run main.go -d)"
+        echo "Chained : $(echo $HEX | go run main.go | go run main.go -d)"
         echo "Version : $(go run main.go version)"
 
     - name: Send slack notification

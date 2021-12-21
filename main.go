@@ -1,53 +1,53 @@
 package main
 
 import (
+	"os"
+	"fmt"
 	"bufio"
 	"encoding/base32"
-	"fmt"
-	"os"
 )
 
 var (
-	VERSION = "v0.1.0"
+	VERSION = "v0.1.1"
 	USAGE   = `SYNOPSIS
     Base32 encodes and decodes payloads
 
 USAGE
-    base32 encode [PAYLOAD]     # Encodes PAYLOAD or what's in the STDIN
-    base32 decode [PAYLOAD]     # Decodes PAYLOAD or what's in the STDIN
-    base32 help                 # Shows this help
-    base32 version              # Shows the current version
+    base32 -e, --encode [PAYLOAD]   # Encodes PAYLOAD (or what's in the STDIN)
+    base32 -d, --decode [PAYLOAD]   # Decodes PAYLOAD (or what's in the STDIN)
+    base32     --help              	# Shows this help
+    base32     --version           	# Shows the current version
 `
 )
 
 func main() {
-	command := "help"
+	command := ""
 	if len(os.Args) > 1 {
 		command = os.Args[1]
 	}
 
 	switch command {
-	case "help", "--help":
+	case "--help":
 		fmt.Print(USAGE)
 		return
 
-	case "version", "--version":
+	case "--version":
 		fmt.Println(VERSION)
 		return
 
-	case "encode", "enc", "e", "--encode", "-e":
-		payload := getPayload(command, os.Args)
+	case "--encode", "-e", "":
+		payload := getPayload("encode", os.Args)
 		encoded := encode(payload)
 		fmt.Println(encoded)
 
-	case "decode", "dec", "d", "--decode", "-d":
-		payload := getPayload(command, os.Args)
+	case "--decode", "-d":
+		payload := getPayload("decode", os.Args)
 		decoded := decode(payload)
 		fmt.Println(decoded)
 
 	default:
 		fmt.Fprintf(os.Stderr, "Error: Command '%s' not found.\n", command)
-		fmt.Fprintf(os.Stderr, "Run 'base32 help' to check available commands.\n")
+		fmt.Fprintf(os.Stderr, "Run `base32 --help` to check available commands.\n")
 		os.Exit(1)
 	}
 }
